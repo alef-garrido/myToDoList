@@ -4,7 +4,8 @@
   "description": "![](https://img.shields.io/badge/Microverse-blueviolet)",
   "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
   },
   "repository": {
     "type": "git",
@@ -18,6 +19,7 @@
   },
   "homepage": "https://github.com/alef-garrido/myToDoList#readme",
   "devDependencies": {
+    "html-webpack-plugin": "^5.3.2",
     "webpack": "^5.51.1",
     "webpack-cli": "^4.8.0"
   }
