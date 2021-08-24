@@ -1,3 +1,58 @@
 body {
-  background-color: black;
+  background-color: rgb(250, 253, 255);
+  padding: 3em;
+}
+
+main {
+  box-shadow: 0 0 0.75rem rgb(194, 184, 186);
+}
+
+h1 {
+  font-family: sans-serif;
+  font-weight: 300;
+  font-style: normal;
+  font-size: 18px;
+  padding: 1rem 0;
+}
+
+ul {
+  padding: 0;
+}
+
+li {
+  width: 100%;
+  margin: 1rem 0;
+  padding: 0 0.5rem;
+  list-style: none;
+  display: grid;
+  grid-template-columns: 10% 85% 5%;
+  border-bottom: solid 1px rgb(194, 194, 194);
+}
+
+form {
+  display: block;
+}
+
+#header {
+  padding: 0 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: solid 1px rgb(194, 194, 194);
+}
+
+#clear {
+  width: 100%;
+}
+
+.clearBtn {
+  width: 100%;
+  height: 4rem;
+  background-color: rgb(244, 244, 245);
+  color: rgb(131, 129, 129);
+  border: none;
+}
+
+span {
+  cursor: pointer;
 }
