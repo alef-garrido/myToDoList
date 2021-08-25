@@ -1,7 +1,7 @@
 
 ![](https://img.shields.io/badge/Microverse-blueviolet)
 
-# The Awesome Books
+# My To-Do List
 
 A Simple HTML list of To Do tasks built using webpack and served by a webpack dev server. 
 
@@ -23,7 +23,7 @@ A Simple HTML list of To Do tasks built using webpack and served by a webpack de
 
 ## Live Demo
 
-[Live Demo Link](https://alef-garrido.github.io/bullet-toDo-List/)
+[Live Demo Link](...)
 
 ## How to use this repo
 
