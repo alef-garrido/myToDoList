@@ -14,17 +14,15 @@ const bullets = module.Storage.getFromStorage();
 function renderList(arr) {
   const list = document.getElementById('listContainer');
   list.innerHTML = '';
-  if(arr.length === 0) {
+  if (arr.length === 0) {
     const container = document.getElementById('listContainer');
     const stateContainer = document.createElement('div');
     const mssg = document.createElement('p');
     mssg.textContent = 'What are your goals today? :)';
     stateContainer.appendChild(mssg);
-    stateContainer.classList.add('emptyState')
-    container.appendChild(stateContainer)
-    
-  } else
-  {  
+    stateContainer.classList.add('emptyState');
+    container.appendChild(stateContainer);
+  } else {
     arr.forEach((task, index) => {
       const listContainer = document.getElementById('listContainer');
       const taskRow = document.createElement('li');
