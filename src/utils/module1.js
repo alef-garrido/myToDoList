@@ -1,17 +1,28 @@
-export default function renderList(arr) {
-  arr.forEach((task) => {
-    const listContainer = document.getElementById('listContainer');
-    const taskRow = document.createElement('li');
-    const checkmark = document.createElement('input');
-    const text = document.createElement('p');
-    const dots = document.createElement('span');
+/* eslint-disable max-classes-per-file */
 
-    checkmark.setAttribute('type', 'checkbox');
-    checkmark.classList.add('form-check-input', 'me-2');
-    text.textContent = task.description;
-    dots.innerHTML = '<i class="fas fa-ellipsis-v"></i>';
-    taskRow.append(checkmark, text, dots);
-    taskRow.id = task.index;
-    listContainer.appendChild(taskRow);
-  });
+class Storage {
+  static saveToStorage(arr) {
+    localStorage.setItem('todoList', JSON.stringify(arr));
+  }
+
+  static getFromStorage() {
+    let tasks;
+    if (localStorage.getItem('todoList') === null) {
+      tasks = [];
+    } else {
+      tasks = JSON.parse(localStorage.getItem('todoList'));
+    }
+    return tasks;
+  }
 }
+
+class Status {
+  static toggleBullet = (arr, id) => {
+    const bullet = arr.find((task) => task.id === id);
+    if (bullet) {
+      bullet.completed = !bullet.completed;
+    }
+  }
+}
+
+export { Status, Storage };

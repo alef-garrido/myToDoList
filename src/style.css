@@ -56,3 +56,9 @@ form {
 span {
   cursor: pointer;
 }
+
+.emptyState {
+  text-align: center;
+  margin: 1rem;
+  color: rgb(189, 154, 173);
+}
