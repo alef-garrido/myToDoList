@@ -107,7 +107,9 @@ li {
 form {
   display: block;
 }
-
+.hide {
+  display: none
+}
 #header {
   padding: 0 1rem;
   display: flex;
