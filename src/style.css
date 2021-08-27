@@ -5,7 +5,7 @@
   box-sizing: border-box;
 }
 
-/* Remove default margin */
+Remove default margin
 body,
 h1,
 h2,
@@ -138,15 +138,17 @@ span {
   margin: 1rem;
   color: rgb(189, 154, 173);
 }
-input[type=text] {
+input[type=text], 
+input[type=text]:active, 
+input[type=text]:focus-visible  {
   border: none;
   appearance: none;
   vertical-align: middle;
-}
-input[type=text]:focus-visible {
+  background: transparent;
   outline: none;
   box-shadow: none;
 }
+
 .todo {
   border: none;
   font-size: large;
@@ -156,10 +158,25 @@ input[type=text]:focus-visible {
   align-items: center;
   border-bottom:1px solid rgba(0,0,0,0.08);
 }
+.add input {
+  border: none;
+}
+.add input::placeholder {
+  color: rgb(148, 147, 147);
+  font-style: italic;
+}
+.add input:focus-visible {
+  outline: none;
+  box-shadow: none;
+  background: transparent;
+}
 .add p {
   margin: .5em 1em 0 0;
 }
 .completed {
   text-decoration: line-through;
   color: grey;
+}
+.editing {
+  background: #fffeca;
 }

@@ -1,6 +1,6 @@
-import './style.css';
-import * as module from './utils/module1.js';
-import EditTask from './utils/editing.js';
+import "./style.css";
+import * as module from "./utils/module1.js";
+import EditTask from "./utils/editing.js";
 
 class Task {
   constructor(arr, text) {
@@ -12,55 +12,75 @@ class Task {
 
 const bullets = module.Storage.getFromStorage();
 
-window.addEventListener('load', module.renderList(bullets));
+window.addEventListener("load", module.renderList(bullets));
 
 function add() {
-  const text = document.getElementById('text').value;
+  const text = document.getElementById("text").value;
 
   bullets.push(new Task(bullets, text));
   module.Storage.saveToStorage(bullets);
   module.renderList(bullets);
-  document.getElementById('text').value = '';
+  document.getElementById("text").value = "";
 }
 
-const addTask = document.querySelector('#addTask');
-addTask.addEventListener('submit', (e) => {
+const addTask = document.querySelector("#addTask");
+addTask.addEventListener("submit", (e) => {
   e.preventDefault();
   add();
-  location.reload()
+  location.reload();
 });
 
 // Status Update
-const taskList = document.querySelector('#listContainer');
-taskList.addEventListener('change', (e) => {
-  if (e.target.classList.contains('status')) {
-    const { id } = e.target.parentElement; 
-    let taskBody = document.getElementById(`task-${id}`)
+const taskList = document.querySelector("#listContainer");
+taskList.addEventListener("change", (e) => {
+  if (e.target.classList.contains("status")) {
+    const { id } = e.target.parentElement;
+    let taskBody = document.getElementById(`task-${id}`);
     module.Status.toggleBullet(bullets, parseInt(id, 10));
-    module.Storage.saveToStorage(bullets);      
-    taskBody.classList.toggle('completed') 
-    module.Storage.saveToStorage(bullets)  
+    module.Storage.saveToStorage(bullets);
+    taskBody.classList.toggle("completed");
+    module.Storage.saveToStorage(bullets);
   }
-  
 });
 
 // Edit Description
 
-const inputs = Array.from(document.querySelectorAll('.todo'))
-inputs.forEach(input => {
-  input.addEventListener('input', (e) => {  
+const inputs = Array.from(document.querySelectorAll(".todo"));
+inputs.forEach((input) => {
+  input.addEventListener("input", (e) => {
     const id = parseInt(e.target.parentElement.id);
     const value = e.target.value;
     EditTask.updateTask(bullets, id, value);
-    module.Storage.saveToStorage(bullets); 
-    
-    //   e.target.addEventListener('change', (e) => {
-    //     const id = parseInt(e.target.parentElement.id);
-    //     const value = e.target.value;
-    //     EditTask.updateTask(bullets, id, value);
-    //     module.Storage.saveToStorage(bullets); 
-    //     module.renderList(bullets)
-    // })
-})
-})
-  
+    module.Storage.saveToStorage(bullets);
+  });
+});
+
+const tasks = Array.from(document.querySelectorAll(".todo"));
+for (let task in tasks) {
+  let id = parseInt(task) + 1;
+  const bulletRow = document.getElementById(`${id}`);
+
+  const trash = document.getElementById(`trash-${id}`);
+  const dots = document.getElementById(`dots-${id}`);
+
+  bulletRow.addEventListener("focusin", () => {
+    bulletRow.classList.toggle("editing");
+    trash.classList.toggle("hide");
+    dots.classList.toggle("hide");
+  });
+  bulletRow.addEventListener("focusout", () => {
+    setTimeout(() => {
+      bulletRow.classList.toggle("editing");
+      trash.classList.toggle("hide");
+      dots.classList.toggle("hide");
+    }, 100);
+  });
+
+  // trash.addEventListener('click', (e) => {
+  //   let id = parseInt(task)
+  //   console.log(id)
+  //   bullets.splice(id, 1)
+  //   module.Storage.saveToStorage(bullets)
+  //   module.renderList(bullets)
+  // })
+}

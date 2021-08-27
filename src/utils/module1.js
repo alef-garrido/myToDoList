@@ -42,8 +42,8 @@ function renderList(arr) {
       const str = `<li id=${index + 1} class="task ${task.completed}">
           <input type="checkbox" id=check-${index + 1} class="status form-check-input me-2">
           <input type="text" id=task-${index + 1} class="todo" value='${task.description}'>
-          <span><i class="fas fa-ellipsis-v"></i></span>
-          <span class="hide"><i class="fas fa-trash-alt"></i></span>
+          <span id="dots-${index + 1}"> <i class="fas fa-ellipsis-v"></i> </span>
+          <span id="trash-${index + 1}" class="hide"><i class="fas fa-trash-alt"></i></span>
         </li>`
       
       listContainer.insertAdjacentHTML("beforeend", str)
