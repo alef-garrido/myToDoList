@@ -21,7 +21,6 @@ class Status {
     const bullet = arr.find((task) => task.id === id);
     if (bullet) {
       bullet.completed = !bullet.completed;
-      // location.reload()
     }
   }
 }
@@ -43,21 +42,25 @@ function renderList(arr) {
       const listContainer = document.getElementById('listContainer');
       const taskRow = document.createElement('li');
       const checkmark = document.createElement('input');
-      const description = document.createElement('input');
+      const taskBody = document.createElement('input');
       const dots = document.createElement('span');
 
       checkmark.setAttribute('type', 'checkbox');
       checkmark.classList.add('status', 'form-check-input', 'me-2');
       checkmark.checked = task.completed;
-      description.type = 'text';
-      description.classList.add('todo');
-      description.value = task.description;
+      taskBody.setAttribute('type', 'text');
+      taskBody.classList.add('todo');
+      taskBody.id = `task-${index+1}`
+      taskBody.value = task.description;
       dots.innerHTML = '<i class="fas fa-ellipsis-v"></i>';
-      taskRow.append(checkmark, description, dots);
+      taskRow.append(checkmark, taskBody, dots);
       taskRow.id = index + 1;
       taskRow.classList.add('task', `${task.completed}` )
       listContainer.appendChild(taskRow);
-    });
+      if (task.completed === true) {
+        taskBody.classList.add('completed')
+      }
+     });
   }
 }
 

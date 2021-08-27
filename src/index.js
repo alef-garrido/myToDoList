@@ -32,26 +32,35 @@ addTask.addEventListener('submit', (e) => {
 
 // Status Update
 const taskList = document.querySelector('#listContainer');
-
-taskList.addEventListener('click', (e) => {
+taskList.addEventListener('change', (e) => {
   if (e.target.classList.contains('status')) {
-    const { id } = e.target.parentElement;
+    const { id } = e.target.parentElement; 
+    let taskBody = document.getElementById(`task-${id}`)
     module.Status.toggleBullet(bullets, parseInt(id, 10));
-    module.Storage.saveToStorage(bullets);
-    module.renderList(bullets);
+    module.Storage.saveToStorage(bullets);      
+    taskBody.classList.toggle('completed') 
+    module.Storage.saveToStorage(bullets)  
   }
+  
 });
 
 // Edit Description
 
-const todos = Array.from(document.querySelectorAll('.todo'));
-todos.forEach((task) => { 
-  let parentNode = task.parentElement.classList
-  task.addEventListener('input', (e) => {  
-      console.log(e.target)
-      const id = parseInt(e.target.parentElement.id);
-      const value = e.target.value;
-      EditTask.updateTask(bullets, id, value);
-      module.Storage.saveToStorage(bullets);     
-  })
+const inputs = Array.from(document.querySelectorAll('.todo'))
+inputs.forEach(input => {
+  input.addEventListener('input', (e) => {  
+    const id = parseInt(e.target.parentElement.id);
+    const value = e.target.value;
+    EditTask.updateTask(bullets, id, value);
+    module.Storage.saveToStorage(bullets); 
+    
+    //   e.target.addEventListener('change', (e) => {
+    //     const id = parseInt(e.target.parentElement.id);
+    //     const value = e.target.value;
+    //     EditTask.updateTask(bullets, id, value);
+    //     module.Storage.saveToStorage(bullets); 
+    //     module.renderList(bullets)
+    // })
 })
+})
+  
