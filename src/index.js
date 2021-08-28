@@ -75,12 +75,31 @@ for (let task in tasks) {
       dots.classList.toggle("hide");
     }, 100);
   });
-
-  // trash.addEventListener('click', (e) => {
-  //   let id = parseInt(task)
-  //   console.log(id)
-  //   bullets.splice(id, 1)
-  //   module.Storage.saveToStorage(bullets)
-  //   module.renderList(bullets)
-  // })
 }
+
+
+// Update id/index
+
+function updateId() {
+  bullets.forEach((task, index) => {
+    task.id =  index + 1
+  })
+  module.Storage.saveToStorage(bullets)
+  module.renderList(bullets)
+  location.reload()
+}
+
+
+// delete task
+
+const listContainer = document.getElementById('listContainer')
+listContainer.addEventListener('click', (e) => {
+  if(e.target.classList.contains('fa-trash-alt')) {
+    const index = parseInt(e.target.parentElement.parentElement.id)
+    EditTask.deleteTask(bullets, index -1)
+    updateId()
+  }
+})
+
+
+

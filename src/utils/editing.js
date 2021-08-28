@@ -5,5 +5,10 @@ export default class EditTask {
       bullet.description = value;
    }
  }
+
+ static deleteTask = (arr, index) => {
+    arr.splice(index, 1)
+ }
 }
+
 
