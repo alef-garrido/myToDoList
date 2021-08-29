@@ -14,6 +14,7 @@ const bullets = module.Storage.getFromStorage();
 
 window.addEventListener("load", module.renderList(bullets));
 
+// Add a new task
 function add() {
   const text = document.getElementById("text").value;
 
@@ -30,6 +31,7 @@ addTask.addEventListener("submit", (e) => {
   location.reload();
 });
 
+
 // Status Update
 const taskList = document.querySelector("#listContainer");
 taskList.addEventListener("change", (e) => {
@@ -43,8 +45,8 @@ taskList.addEventListener("change", (e) => {
   }
 });
 
-// Edit Description
 
+// Edit Description
 const inputs = Array.from(document.querySelectorAll(".todo"));
 inputs.forEach((input) => {
   input.addEventListener("input", (e) => {
@@ -79,7 +81,6 @@ for (let task in tasks) {
 
 
 // Update id/index
-
 function updateId() {
   bullets.forEach((task, index) => {
     task.id =  index + 1
@@ -90,8 +91,7 @@ function updateId() {
 }
 
 
-// delete task
-
+// Delete task
 const listContainer = document.getElementById('listContainer')
 listContainer.addEventListener('click', (e) => {
   if(e.target.classList.contains('fa-trash-alt')) {
@@ -101,5 +101,13 @@ listContainer.addEventListener('click', (e) => {
   }
 })
 
+// Clear all completed tasks
+const clearBtn = document.querySelector('.clearBtn')
+clearBtn.addEventListener('click', () => {
+  EditTask.clearCompleted(bullets)
+  updateId()
+  module.Storage.saveToStorage(bullets)
+  module.renderList(bullets)
+})
 
 

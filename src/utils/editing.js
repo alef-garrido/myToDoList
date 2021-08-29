@@ -6,9 +6,18 @@ export default class EditTask {
    }
  }
 
- static deleteTask = (arr, index) => {
-    arr.splice(index, 1)
- }
+   static deleteTask = (arr, index) => {
+      arr.splice(index, 1)
+   }
+
+   static clearCompleted = (arr) => {
+      for (let task in arr) {
+         while (arr[task].completed === true) {
+           this.deleteTask(arr, task)
+         }
+       }
+   } 
+
 }
 
 
