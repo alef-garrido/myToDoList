@@ -6,32 +6,18 @@ import './style.css';
 import * as module from './utils/module1.js';
 import EditTask from './utils/editing.js';
 
-class Task {
-  constructor(arr, text) {
-    this.id = arr.length + 1;
-    this.description = text;
-    this.completed = false;
-  }
-}
-
 const bullets = module.Storage.getFromStorage();
 
 window.addEventListener('load', module.renderList(bullets));
 
-// Add a new task
-function add() {
-  const text = document.getElementById('text').value;
-
-  bullets.push(new Task(bullets, text));
-  module.Storage.saveToStorage(bullets);
-  module.renderList(bullets);
-  document.getElementById('text').value = '';
-}
+// EVENT LISTENERS
 
 const addTask = document.querySelector('#addTask');
 addTask.addEventListener('submit', (e) => {
   e.preventDefault();
-  add();
+  EditTask.add(bullets);
+  module.Storage.saveToStorage(bullets);
+  module.renderList(bullets);
   location.reload();
 });
 
