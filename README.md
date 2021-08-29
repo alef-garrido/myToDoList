@@ -23,7 +23,7 @@ A Simple HTML list of To Do tasks built using webpack and served by a webpack de
 
 ## Live Demo
 
-To see a live version of this project please consider making a clone and run the Webpack server.
+[Live Demo Link](https://alef-garrido.github.io/myToDoList/)
 
 ## How to use this repo
 
