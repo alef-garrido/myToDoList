@@ -25,7 +25,6 @@ class Status {
   }
 }
 
-
 function renderList(arr) {
   const list = document.getElementById('listContainer');
   list.innerHTML = '';
@@ -33,9 +32,8 @@ function renderList(arr) {
     const emptyState = document.getElementById('listContainer');
     const str = `<div class="emptyState"> 
       <p>What are your goals today? :)<p> 
-    </div>`
+    </div>`;
     emptyState.insertAdjacentHTML('afterbegin', str);
-
   } else {
     arr.forEach((task, index) => {
       const listContainer = document.getElementById('listContainer');
@@ -44,17 +42,17 @@ function renderList(arr) {
           <input type="text" id=task-${index + 1} class="todo" value='${task.description}'>
           <span id="dots-${index + 1}" class="dots"> <i class="fas fa-ellipsis-v"></i> </span>
           <span id="trash-${index + 1}" class="delete hide"><i class="fas fa-trash-alt"></i></span>
-        </li>`
-      
-      listContainer.insertAdjacentHTML("beforeend", str)
+        </li>`;
+
+      listContainer.insertAdjacentHTML('beforeend', str);
 
       if (task.completed === true) {
-        let finished = document.getElementById(`task-${index + 1}`)
-        let checks = document.getElementById(`check-${index + 1}`)
-        checks.toggleAttribute('checked')
-        finished.classList.toggle('completed')
+        const finished = document.getElementById(`task-${index + 1}`);
+        const checks = document.getElementById(`check-${index + 1}`);
+        checks.toggleAttribute('checked');
+        finished.classList.toggle('completed');
       }
-     });
+    });
   }
 }
 

@@ -5,7 +5,7 @@
   box-sizing: border-box;
 }
 
-Remove default margin
+/* remove default margin  */
 body,
 h1,
 h2,
@@ -35,6 +35,8 @@ body {
   min-height: 100vh;
   text-rendering: optimizeSpeed;
   line-height: 1.5;
+  background-color: rgb(250, 253, 255);
+  padding: 3em;
 }
 
 /* A elements that don't have a class get default styles */
@@ -60,9 +62,9 @@ select {
 /* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
 @media (prefers-reduced-motion: reduce) {
   html:focus-within {
-   scroll-behavior: auto;
+    scroll-behavior: auto;
   }
-  
+
   *,
   *::before,
   *::after {
@@ -71,11 +73,6 @@ select {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
-}
-
-body {
-  background-color: rgb(250, 253, 255);
-  padding: 3em;
 }
 
 main {
@@ -107,9 +104,11 @@ li {
 form {
   display: block;
 }
+
 .hide {
-  display: none
+  display: none;
 }
+
 #header {
   padding: 0 1rem;
   display: flex;
@@ -133,14 +132,16 @@ form {
 span {
   cursor: pointer;
 }
+
 .emptyState {
   text-align: center;
   margin: 1rem;
   color: rgb(189, 154, 173);
 }
-input[type=text], 
-input[type=text]:active, 
-input[type=text]:focus-visible  {
+
+input[type=text],
+input[type=text]:active,
+input[type=text]:focus-visible {
   border: none;
   appearance: none;
   vertical-align: middle;
@@ -153,30 +154,37 @@ input[type=text]:focus-visible  {
   border: none;
   font-size: large;
 }
+
 .add {
   display: flex;
   align-items: center;
-  border-bottom:1px solid rgba(0,0,0,0.08);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
 }
+
 .add input {
   border: none;
 }
+
 .add input::placeholder {
   color: rgb(148, 147, 147);
   font-style: italic;
 }
+
 .add input:focus-visible {
   outline: none;
   box-shadow: none;
   background: transparent;
 }
+
 .add p {
-  margin: .5em 1em 0 0;
+  margin: 0.5em 1em 0 0;
 }
+
 .completed {
   text-decoration: line-through;
   color: grey;
 }
+
 .editing {
   background: #fffeca;
 }
