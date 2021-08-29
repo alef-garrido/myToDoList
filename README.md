@@ -12,7 +12,7 @@ A Simple HTML list of To Do tasks built using webpack and served by a webpack de
   - Use proper ES6 syntax.
   - Use ES6 modules to write modular JavaScript.
 
-![screenshot](/App-screenshoot.png)
+![screenshot](./assets/App-screenshot.png)
 
 ## Built With
 
@@ -23,7 +23,7 @@ A Simple HTML list of To Do tasks built using webpack and served by a webpack de
 
 ## Live Demo
 
-[Live Demo Link](...)
+To see a live version of this project please consider making a clone and run the Webpack server.
 
 ## How to use this repo
 
