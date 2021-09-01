@@ -1,4 +1,4 @@
-export default function renderList(arr) {
+function renderList(arr) {
   const list = document.getElementById('listContainer');
   list.innerHTML = '';
   if (arr.length === 0) {
@@ -28,3 +28,5 @@ export default function renderList(arr) {
     });
   }
 }
+
+export default { renderList }
