@@ -32,10 +32,11 @@ html:focus-within {
 
 /* Set core body defaults */
 body {
+  color: antiquewhite;
   min-height: 100vh;
   text-rendering: optimizeSpeed;
   line-height: 1.5;
-  background-color: rgb(250, 253, 255);
+  background-color: #272822;
   padding: 3em;
 }
 
@@ -76,7 +77,9 @@ select {
 }
 
 main {
-  box-shadow: 0 0 0.75rem rgb(194, 184, 186);
+  box-shadow: 0 0 0.75rem rgb(214, 214, 45, 41%);
+  width: 60vw;
+  margin: 0 auto;
 }
 
 h1 {
@@ -99,6 +102,7 @@ li {
   grid-template-columns: 10% 85% 5%;
   border-bottom: solid 1px rgb(194, 194, 194);
   align-items: center;
+  color: #fffeca;
 }
 
 form {
@@ -124,7 +128,7 @@ form {
 .clearBtn {
   width: 100%;
   height: 4rem;
-  background-color: rgb(244, 244, 245);
+  background-color: #272822;
   color: rgb(131, 129, 129);
   border: none;
 }
@@ -136,7 +140,7 @@ span {
 .emptyState {
   text-align: center;
   margin: 1rem;
-  color: rgb(189, 154, 173);
+  color: #d6d62d;
 }
 
 input[type=text],
@@ -148,6 +152,7 @@ input[type=text]:focus-visible {
   background: transparent;
   outline: none;
   box-shadow: none;
+  color: antiquewhite;
 }
 
 .todo {
@@ -158,11 +163,13 @@ input[type=text]:focus-visible {
 .add {
   display: flex;
   align-items: center;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  border-bottom: 1px solid whitesmoke;
 }
 
 .add input {
   border: none;
+  background-color: #272822;
+  caret-color: #74af2a;
 }
 
 .add input::placeholder {
@@ -171,6 +178,7 @@ input[type=text]:focus-visible {
 }
 
 .add input:focus-visible {
+  color: antiquewhite;
   outline: none;
   box-shadow: none;
   background: transparent;
@@ -186,5 +194,6 @@ input[type=text]:focus-visible {
 }
 
 .editing {
-  background: #fffeca;
+  color: #74af2a;
+  background: #1e1f1c;
 }

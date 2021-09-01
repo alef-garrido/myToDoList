@@ -1,53 +1,53 @@
 /* eslint-disable no-restricted-globals */
 /* eslint-disable no-restricted-syntax */
-/* eslint-disable guard-for-in */
-/* eslint-disable radix */
+
 import './style.css';
-import * as module from './utils/module1.js';
+import Storage from './utils/storage.js';
+import Render from './utils/rendering.js';
 import EditTask from './utils/editing.js';
 
-const bullets = module.Storage.getFromStorage();
+const bullets = Storage.getFromStorage();
 
-window.addEventListener('load', module.renderList(bullets));
+window.addEventListener('load', Render.renderList(bullets));
 
 // EVENT LISTENERS
 
+// Event Add-Task
 const addTask = document.querySelector('#addTask');
 addTask.addEventListener('submit', (e) => {
   e.preventDefault();
   EditTask.add(bullets);
-  module.Storage.saveToStorage(bullets);
-  module.renderList(bullets);
+  Storage.saveToStorage(bullets);
+  Render.renderList(bullets);
   location.reload();
 });
 
-// Status Update
+// Event Status Update
 const taskList = document.querySelector('#listContainer');
 taskList.addEventListener('change', (e) => {
   if (e.target.classList.contains('status')) {
     const { id } = e.target.parentElement;
     const taskBody = document.getElementById(`task-${id}`);
-    module.Status.toggleBullet(bullets, parseInt(id, 10));
-    module.Storage.saveToStorage(bullets);
+    EditTask.toggleBullet(bullets, parseInt(id, 10));
     taskBody.classList.toggle('completed');
-    module.Storage.saveToStorage(bullets);
+    Storage.saveToStorage(bullets);
   }
 });
 
-// Edit Description
+// Events for Edit Description
 const inputs = Array.from(document.querySelectorAll('.todo'));
 inputs.forEach((input) => {
   input.addEventListener('input', (e) => {
-    const id = parseInt(e.target.parentElement.id);
+    const id = parseInt(e.target.parentElement.id, 10);
     const { value } = e.target;
     EditTask.updateTask(bullets, id, value);
-    module.Storage.saveToStorage(bullets);
+    Storage.saveToStorage(bullets);
   });
 });
 
 const tasks = Array.from(document.querySelectorAll('.todo'));
-for (const task in tasks) {
-  const id = parseInt(task) + 1;
+for (let task = 0; task < tasks.length; task += 1) {
+  const id = parseInt(task, 10) + 1;
   const bulletRow = document.getElementById(`${id}`);
 
   const trash = document.getElementById(`trash-${id}`);
@@ -67,31 +67,29 @@ for (const task in tasks) {
   });
 }
 
-// Update id/index
-function updateId() {
-  bullets.forEach((task, index) => {
-    task.id = index + 1;
-  });
-  module.Storage.saveToStorage(bullets);
-  module.renderList(bullets);
-  location.reload();
-}
-
-// Delete task
+// Event Delete-task
 const listContainer = document.getElementById('listContainer');
 listContainer.addEventListener('click', (e) => {
   if (e.target.classList.contains('fa-trash-alt')) {
-    const index = parseInt(e.target.parentElement.parentElement.id);
+    const index = parseInt(e.target.parentElement.parentElement.id, 10);
     EditTask.deleteTask(bullets, index - 1);
-    updateId();
+    EditTask.updateId(bullets);
+    Storage.saveToStorage(bullets);
+    Render.renderList(bullets);
+    location.reload();
   }
 });
 
-// Clear all completed tasks
-const clearBtn = document.querySelector('.clearBtn');
+// Event Clear all completed tasks
+const clearBtn = document.getElementById('clear');
 clearBtn.addEventListener('click', () => {
-  EditTask.clearCompleted(bullets);
-  updateId();
-  module.Storage.saveToStorage(bullets);
-  module.renderList(bullets);
+  for (let i = 0; i < bullets.length; i += 1) {
+    while (bullets[i].completed === true) {
+      EditTask.deleteTask(bullets, i);
+    }
+  }
+  EditTask.updateId(bullets);
+  Storage.saveToStorage(bullets);
+  Render.renderList(bullets);
+  location.reload();
 });
