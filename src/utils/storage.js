@@ -1,6 +1,6 @@
 /* eslint-disable max-classes-per-file */
 
-class Storage {
+export default class Storage {
   static saveToStorage(arr) {
     localStorage.setItem('todoList', JSON.stringify(arr));
   }
@@ -15,8 +15,3 @@ class Storage {
     return tasks;
   }
 }
-
-
-
-
-export { Storage };

@@ -28,13 +28,13 @@ export default class EditTask {
      arr.splice(index, 1);
    }
 
-  //  static clearCompleted(arr) {
-  //    for (const task in arr) {
-  //      while (arr[task].completed === true) {
-  //        this.deleteTask(arr, task);
-  //      }
-  //    }
-  //  }
+   //  static clearCompleted(arr) {
+   //    for (const task in arr) {
+   //      while (arr[task].completed === true) {
+   //        this.deleteTask(arr, task);
+   //      }
+   //    }
+   //  }
 
    static updateId(arr) {
      arr.forEach((task, index) => {
@@ -43,10 +43,9 @@ export default class EditTask {
    }
 
    static toggleBullet = (arr, id) => {
-    const bullet = arr.find((task) => task.id === id);
-    if (bullet) {
-      bullet.completed = !bullet.completed;
-    }
-  }
-
+     const bullet = arr.find((task) => task.id === id);
+     if (bullet) {
+       bullet.completed = !bullet.completed;
+     }
+   }
 }

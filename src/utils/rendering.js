@@ -29,4 +29,4 @@ function renderList(arr) {
   }
 }
 
-export default { renderList }
+export default { renderList };

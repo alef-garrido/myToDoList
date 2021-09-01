@@ -80,7 +80,6 @@ main {
   box-shadow: 0 0 0.75rem rgb(214, 214, 45, 41%);
   width: 60vw;
   margin: 0 auto;
-  
 }
 
 h1 {
@@ -141,7 +140,7 @@ span {
 .emptyState {
   text-align: center;
   margin: 1rem;
-  color: #D6D62D;
+  color: #d6d62d;
 }
 
 input[type=text],
@@ -170,7 +169,7 @@ input[type=text]:focus-visible {
 .add input {
   border: none;
   background-color: #272822;
-  caret-color: #74AF2A;
+  caret-color: #74af2a;
 }
 
 .add input::placeholder {
@@ -195,6 +194,6 @@ input[type=text]:focus-visible {
 }
 
 .editing {
-  color: #74AF2A;
-  background: #1E1F1C;
+  color: #74af2a;
+  background: #1e1f1c;
 }

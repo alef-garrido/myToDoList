@@ -2,23 +2,22 @@
 /* eslint-disable no-restricted-syntax */
 
 import './style.css';
-import * as Local from './utils/storage.js';
-import Render from './utils/rendering.js'
+import Storage from './utils/storage.js';
+import Render from './utils/rendering.js';
 import EditTask from './utils/editing.js';
 
-const bullets = Local.Storage.getFromStorage();
+const bullets = Storage.getFromStorage();
 
 window.addEventListener('load', Render.renderList(bullets));
 
-
 // EVENT LISTENERS
 
-//Event Add-Task
+// Event Add-Task
 const addTask = document.querySelector('#addTask');
 addTask.addEventListener('submit', (e) => {
   e.preventDefault();
   EditTask.add(bullets);
-  Local.Storage.saveToStorage(bullets);
+  Storage.saveToStorage(bullets);
   Render.renderList(bullets);
   location.reload();
 });
@@ -31,7 +30,7 @@ taskList.addEventListener('change', (e) => {
     const taskBody = document.getElementById(`task-${id}`);
     EditTask.toggleBullet(bullets, parseInt(id, 10));
     taskBody.classList.toggle('completed');
-    Local.Storage.saveToStorage(bullets);
+    Storage.saveToStorage(bullets);
   }
 });
 
@@ -39,16 +38,16 @@ taskList.addEventListener('change', (e) => {
 const inputs = Array.from(document.querySelectorAll('.todo'));
 inputs.forEach((input) => {
   input.addEventListener('input', (e) => {
-    const id = parseInt(e.target.parentElement.id);
+    const id = parseInt(e.target.parentElement.id, 10);
     const { value } = e.target;
     EditTask.updateTask(bullets, id, value);
-    Local.Storage.saveToStorage(bullets);
+    Storage.saveToStorage(bullets);
   });
 });
 
 const tasks = Array.from(document.querySelectorAll('.todo'));
-for (const task in tasks) {
-  const id = parseInt(task) + 1;
+for (let task = 0; task < tasks.length; task += 1) {
+  const id = parseInt(task, 10) + 1;
   const bulletRow = document.getElementById(`${id}`);
 
   const trash = document.getElementById(`trash-${id}`);
@@ -72,10 +71,10 @@ for (const task in tasks) {
 const listContainer = document.getElementById('listContainer');
 listContainer.addEventListener('click', (e) => {
   if (e.target.classList.contains('fa-trash-alt')) {
-    const index = parseInt(e.target.parentElement.parentElement.id);
+    const index = parseInt(e.target.parentElement.parentElement.id, 10);
     EditTask.deleteTask(bullets, index - 1);
     EditTask.updateId(bullets);
-    Local.Storage.saveToStorage(bullets);
+    Storage.saveToStorage(bullets);
     Render.renderList(bullets);
     location.reload();
   }
@@ -84,13 +83,13 @@ listContainer.addEventListener('click', (e) => {
 // Event Clear all completed tasks
 const clearBtn = document.getElementById('clear');
 clearBtn.addEventListener('click', () => {
-    for (const i in bullets) {
-      while (bullets[i].completed === true) {
-        EditTask.deleteTask(bullets, i);
-      }
+  for (let i = 0; i < bullets.length; i += 1) {
+    while (bullets[i].completed === true) {
+      EditTask.deleteTask(bullets, i);
     }
-    EditTask.updateId(bullets);
-    Local.Storage.saveToStorage(bullets);
-    Render.renderList(bullets);
-    location.reload();
+  }
+  EditTask.updateId(bullets);
+  Storage.saveToStorage(bullets);
+  Render.renderList(bullets);
+  location.reload();
 });
