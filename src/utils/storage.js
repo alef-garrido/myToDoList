@@ -16,15 +16,7 @@ class Storage {
   }
 }
 
-class Status {
-  static toggleBullet = (arr, id) => {
-    const bullet = arr.find((task) => task.id === id);
-    if (bullet) {
-      bullet.completed = !bullet.completed;
-    }
-  }
-}
 
 
 
-export { Status, Storage };
+export { Storage };

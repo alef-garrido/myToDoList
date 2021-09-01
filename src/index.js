@@ -13,6 +13,7 @@ window.addEventListener('load', Render.renderList(bullets));
 
 // EVENT LISTENERS
 
+//Event Add-Task
 const addTask = document.querySelector('#addTask');
 addTask.addEventListener('submit', (e) => {
   e.preventDefault();
@@ -22,20 +23,19 @@ addTask.addEventListener('submit', (e) => {
   location.reload();
 });
 
-// Status Update
+// Event Status Update
 const taskList = document.querySelector('#listContainer');
 taskList.addEventListener('change', (e) => {
   if (e.target.classList.contains('status')) {
     const { id } = e.target.parentElement;
     const taskBody = document.getElementById(`task-${id}`);
-    Local.Status.toggleBullet(bullets, parseInt(id, 10));
-    // Local.Storage.saveToStorage(bullets);
+    EditTask.toggleBullet(bullets, parseInt(id, 10));
     taskBody.classList.toggle('completed');
     Local.Storage.saveToStorage(bullets);
   }
 });
 
-// Edit Description
+// Events for Edit Description
 const inputs = Array.from(document.querySelectorAll('.todo'));
 inputs.forEach((input) => {
   input.addEventListener('input', (e) => {
@@ -68,31 +68,29 @@ for (const task in tasks) {
   });
 }
 
-// Update id/index
-function updateId() {
-  bullets.forEach((task, index) => {
-    task.id = index + 1;
-  });
-  Local.Storage.saveToStorage(bullets);
-  Render.renderList(bullets);
-  location.reload();
-}
-
-// Delete task
+// Event Delete-task
 const listContainer = document.getElementById('listContainer');
 listContainer.addEventListener('click', (e) => {
   if (e.target.classList.contains('fa-trash-alt')) {
     const index = parseInt(e.target.parentElement.parentElement.id);
     EditTask.deleteTask(bullets, index - 1);
-    updateId();
+    EditTask.updateId(bullets);
+    Local.Storage.saveToStorage(bullets);
+    Render.renderList(bullets);
+    location.reload();
   }
 });
 
-// Clear all completed tasks
-const clearBtn = document.querySelector('.clearBtn');
+// Event Clear all completed tasks
+const clearBtn = document.getElementById('clear');
 clearBtn.addEventListener('click', () => {
-  EditTask.clearCompleted(bullets);
-  updateId();
-  Local.Storage.saveToStorage(bullets);
-  Render.renderList(bullets);
+    for (const i in bullets) {
+      while (bullets[i].completed === true) {
+        EditTask.deleteTask(bullets, i);
+      }
+    }
+    EditTask.updateId(bullets);
+    Local.Storage.saveToStorage(bullets);
+    Render.renderList(bullets);
+    location.reload();
 });
