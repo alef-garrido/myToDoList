@@ -46,4 +46,9 @@ export default class EditTask {
        bullet.completed = !bullet.completed;
      }
    }
+
+   static clearCompleted = (arr) => {
+     
+     return arr.filter(task => task.completed !== true)
+   }
 }
