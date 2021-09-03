@@ -2,8 +2,8 @@
  * @jest-environment jsdom
  */
 
-import EditTask from '../editing';
-import Storage from '../storage';
+import { EditTask } from '../editing.js';
+import Storage from '../storage.js';
 
 const list = Storage.getFromStorage();
 
@@ -38,5 +38,42 @@ describe('Add and Delete task', () => {
     EditTask.deleteTask(list, 0);
 
     expect(list.length).toBe(0);
+  });
+});
+
+describe('Testing task-description editing function', () => {
+  test("Should update second task's description", () => {
+    EditTask.add(list, 'My task 1');
+    EditTask.add(list, 'My task 2');
+
+    EditTask.updateTask(list, 2, 'Updated 2');
+
+    expect(list[1].description).toMatch(/Updated 2/);
+    expect(list[0].description).toMatch(/My task 1/);
+  });
+});
+
+describe('Testing status updating function', () => {
+  test("Should update only first task's status", () => {
+    EditTask.toggleBullet(list, 1);
+
+    expect(list[0].completed).toBeTruthy();
+    expect(list[1].completed).toBeFalsy();
+  });
+});
+
+describe('Testing Update-index function', () => {
+  test("Should update task's  index upon task deletion", () => {
+    EditTask.add(list, 'My task 3');
+    EditTask.add(list, 'My task 4');
+    EditTask.deleteTask(list, 1);
+
+    EditTask.updateId(list);
+
+    expect(list[1].description).toMatch(/My task 3/);
+    expect(list[1].id).toBe(2);
+
+    expect(list[2].description).toMatch(/My task 4/);
+    expect(list[2].id).toBe(3);
   });
 });

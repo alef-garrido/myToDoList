@@ -85,13 +85,8 @@ listContainer.addEventListener('click', (e) => {
 // Event Clear all completed tasks
 const clearBtn = document.getElementById('clear');
 clearBtn.addEventListener('click', () => {
-  for (let i = 0; i < bullets.length; i += 1) {
-    while (bullets[i].completed === true) {
-      EditTask.deleteTask(bullets, i);
-    }
-  }
+  Storage.saveToStorage(EditTask.clearCompleted(bullets));
   EditTask.updateId(bullets);
-  Storage.saveToStorage(bullets);
   Render.renderList(bullets);
   location.reload();
 });

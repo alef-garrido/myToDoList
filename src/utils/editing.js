@@ -2,11 +2,11 @@
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable guard-for-in */
 
-class Task {
-  constructor(arr, text) {
+export class Task {
+  constructor(arr, text, status = false) {
     this.id = arr.length + 1;
     this.description = text;
-    this.completed = false;
+    this.completed = status;
   }
 
   summary() {
@@ -18,7 +18,7 @@ class Task {
   }
 }
 
-export default class EditTask {
+export class EditTask {
   static updateTask = (arr, id, value) => {
     const bullet = arr.find((task) => task.id === id);
     if (bullet) {
@@ -46,4 +46,6 @@ export default class EditTask {
        bullet.completed = !bullet.completed;
      }
    }
+
+   static clearCompleted = (arr) => arr.filter((task) => task.completed !== true)
 }
