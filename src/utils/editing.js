@@ -9,12 +9,12 @@ class Task {
     this.completed = false;
   }
 
-   summary() {
+  summary() {
     return {
       id: this.id,
       body: this.description,
-      status: this.completed
-    }
+      status: this.completed,
+    };
   }
 }
 
@@ -47,5 +47,3 @@ export default class EditTask {
      }
    }
 }
-
-export { Task, EditTask }
