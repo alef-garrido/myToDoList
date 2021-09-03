@@ -15,9 +15,11 @@ window.addEventListener('load', Render.renderList(bullets));
 // Event Add-Task
 const addTask = document.querySelector('#addTask');
 addTask.addEventListener('submit', (e) => {
+  const text = document.getElementById('text').value;
   e.preventDefault();
-  EditTask.add(bullets);
+  EditTask.add(bullets, text);
   Storage.saveToStorage(bullets);
+  document.getElementById('text').value = '';
   Render.renderList(bullets);
   location.reload();
 });
