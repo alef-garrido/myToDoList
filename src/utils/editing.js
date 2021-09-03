@@ -47,8 +47,5 @@ export class EditTask {
      }
    }
 
-   static clearCompleted = (arr) =>  {
-     return arr.filter((task) => task.completed !== true)
-   }
+   static clearCompleted = (arr) => arr.filter((task) => task.completed !== true)
 }
-
