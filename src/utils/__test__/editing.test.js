@@ -2,8 +2,8 @@
  * @jest-environment jsdom
  */
 
-import EditTask from '../editing';
-import Storage from '../storage';
+import { EditTask } from '../editing.js';
+import Storage from '../storage.js';
 
 const list = Storage.getFromStorage();
 
@@ -41,28 +41,26 @@ describe('Add and Delete task', () => {
   });
 });
 
-
 describe('Testing task-description editing function', () => {
-  
   test("Should update second task's description", () => {
     EditTask.add(list, 'My task 1');
     EditTask.add(list, 'My task 2');
 
-    EditTask.updateTask(list, 2, 'Updated 2')
+    EditTask.updateTask(list, 2, 'Updated 2');
 
-    expect(list[1].description).toMatch(/Updated 2/)
-    expect(list[0].description).toMatch(/My task 1/)
-  })
-})
+    expect(list[1].description).toMatch(/Updated 2/);
+    expect(list[0].description).toMatch(/My task 1/);
+  });
+});
 
 describe('Testing status updating function', () => {
   test("Should update only first task's status", () => {
-    EditTask.toggleBullet(list, 1)
+    EditTask.toggleBullet(list, 1);
 
-    expect(list[0].completed).toBeTruthy()
-    expect(list[1].completed).toBeFalsy()
-  })
-})
+    expect(list[0].completed).toBeTruthy();
+    expect(list[1].completed).toBeFalsy();
+  });
+});
 
 describe('Testing Update-index function', () => {
   test("Should update task's  index upon task deletion", () => {
@@ -77,25 +75,6 @@ describe('Testing Update-index function', () => {
 
     expect(list[2].description).toMatch(/My task 4/);
     expect(list[2].id).toBe(3);
+  });
+});
 
-
-  })
-})
-
-describe('Testing Clear-all-Completed function', () => {
-  test("Should remove 3 (completed) out of 3", () => {
-    EditTask.toggleBullet(list, 1)
-    EditTask.toggleBullet(list, 2)
-    EditTask.toggleBullet(list, 3)
-
-    expect(list[0]).toBeTruthy
-    expect(list[1]).toBeTruthy
-    expect(list[2]).toBeTruthy
-
-    const clearedList = EditTask.clearCompleted(list)
-    Storage.saveToStorage(clearedList)
-
-    expect(list.length).toBeFalsy
-  })
-  
-})
