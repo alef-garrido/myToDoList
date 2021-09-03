@@ -16,6 +16,18 @@ describe('Add and Delete task', () => {
     expect(list.length).toBe(1);
   });
 
+  test('Description of the last added task should match the input', () => {
+    expect(list[0].description).toMatch(/my task/)
+  })
+
+  test("Index of task should represent it's place in the list ", () => {
+    expect(list[0].id).toBe(1)
+  })
+
+  test('Default status should be false', () => {
+    expect(list[0].completed).toBe(false)
+  })
+
   test('Should remove just one item from the list', () => {
     const text = 'my 2nd task';
     EditTask.add(list, text);
