@@ -40,3 +40,27 @@ describe('Add and Delete task', () => {
     expect(list.length).toBe(0);
   });
 });
+
+
+describe('Testing task-description editing function', () => {
+  
+  test("Should update second task's description", () => {
+    EditTask.add(list, 'My task 1');
+    EditTask.add(list, 'My task 2');
+
+    EditTask.updateTask(list, 2, 'Updated')
+
+    expect(list[1].description).toMatch(/Updated/)
+    expect(list[0].description).toMatch(/My task 1/)
+  })
+})
+
+describe('Testing status updating function', () => {
+  test("Should update only first task's status", () => {
+    EditTask.toggleBullet(list, 1)
+
+    expect(list[0].completed).toBeTruthy()
+    expect(list[1].completed).toBeFalsy()
+  })
+})
+
