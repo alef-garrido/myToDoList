@@ -16,9 +16,18 @@ describe('Add and Delete task', () => {
     expect(list.length).toBe(1);
   });
 
-  test('Should remove an item from the list', () => {
+  test('Should remove just one item from the list', () => {
+    const text = 'my 2nd task';
+    EditTask.add(list, text);
+    EditTask.deleteTask(list, 1);
+
+    expect(list.length).toBe(1);
+  })
+
+  test('Should remove the last item of the list', () => {
     EditTask.deleteTask(list, 0);
 
     expect(list.length).toBe(0);
   })
+
 });
