@@ -74,8 +74,28 @@ describe('Testing Update-index function', () => {
 
     expect(list[1].description).toMatch(/My task 3/);
     expect(list[1].id).toBe(2);
+
     expect(list[2].description).toMatch(/My task 4/);
     expect(list[2].id).toBe(3);
 
+
   })
+})
+
+describe('Testing Clear-all-Completed function', () => {
+  test("Should remove 3 (completed) out of 3", () => {
+    EditTask.toggleBullet(list, 1)
+    EditTask.toggleBullet(list, 2)
+    EditTask.toggleBullet(list, 3)
+
+    expect(list[0]).toBeTruthy
+    expect(list[1]).toBeTruthy
+    expect(list[2]).toBeTruthy
+
+    const clearedList = EditTask.clearCompleted(list)
+    Storage.saveToStorage(clearedList)
+
+    expect(list.length).toBeFalsy
+  })
+  
 })
