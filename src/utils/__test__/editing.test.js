@@ -48,9 +48,9 @@ describe('Testing task-description editing function', () => {
     EditTask.add(list, 'My task 1');
     EditTask.add(list, 'My task 2');
 
-    EditTask.updateTask(list, 2, 'Updated')
+    EditTask.updateTask(list, 2, 'Updated 2')
 
-    expect(list[1].description).toMatch(/Updated/)
+    expect(list[1].description).toMatch(/Updated 2/)
     expect(list[0].description).toMatch(/My task 1/)
   })
 })
@@ -64,3 +64,18 @@ describe('Testing status updating function', () => {
   })
 })
 
+describe('Testing Update-index function', () => {
+  test("Should update task's  index upon task deletion", () => {
+    EditTask.add(list, 'My task 3');
+    EditTask.add(list, 'My task 4');
+    EditTask.deleteTask(list, 1);
+
+    EditTask.updateId(list);
+
+    expect(list[1].description).toMatch(/My task 3/);
+    expect(list[1].id).toBe(2);
+    expect(list[2].description).toMatch(/My task 4/);
+    expect(list[2].id).toBe(3);
+
+  })
+})
