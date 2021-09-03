@@ -8,6 +8,14 @@ class Task {
     this.description = text;
     this.completed = false;
   }
+
+  summary() {
+    return {
+      id: this.id,
+      body: this.description,
+      status: this.completed,
+    };
+  }
 }
 
 export default class EditTask {
@@ -18,10 +26,8 @@ export default class EditTask {
     }
   }
 
-  static add = (arr) => {
-    const text = document.getElementById('text').value;
+  static add = (arr, text) => {
     arr.push(new Task(arr, text));
-    document.getElementById('text').value = '';
   }
 
    static deleteTask = (arr, index) => {
